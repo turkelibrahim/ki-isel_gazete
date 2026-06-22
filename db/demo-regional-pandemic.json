@@ -1,0 +1,200 @@
+[
+  {
+    "id": "demo-pandemic-asia-1",
+    "title": "Asya'da yeni solunum yolu hastalığı kümeleri bildirildi",
+    "summary": "Bölgesel sağlık kurumları yeni solunum yolu virüsü salgınını izliyor.",
+    "originalTitle": "New respiratory illness cluster reported in East Asia",
+    "originalSummary": "Health officials monitor a regional respiratory virus outbreak.",
+    "originalLanguage": "en",
+    "translatedTitle": "Asya'da yeni solunum yolu hastalığı kümeleri bildirildi",
+    "translatedSummary": "Bölgesel sağlık kurumları yeni solunum yolu virüsü salgınını izliyor.",
+    "displayTitle": "Asya'da yeni solunum yolu hastalığı kümeleri bildirildi",
+    "displaySummary": "Bölgesel sağlık kurumları yeni solunum yolu virüsü salgınını izliyor.",
+    "sourceName": "NHK World",
+    "sourceCountry": "Japan",
+    "sourceCountryCode": "JP",
+    "sourceRegion": "asia",
+    "sourceLanguage": "en",
+    "sourceTrustLevel": "high",
+    "sourceType": "official",
+    "isGlobalSource": false,
+    "sourceId": "nhk-world",
+    "detectedEventRegion": "asia",
+    "mentionedRegions": [
+      "asia"
+    ],
+    "mentionedCountries": [
+      "Japan",
+      "China"
+    ],
+    "category": "Sağlık",
+    "publishedAt": "2026-04-24T08:00:00Z",
+    "imageUrl": "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": "demo-pandemic-asia-2",
+    "originalTitle": "Health officials monitor unusual pneumonia cases in major Asian cities",
+    "sourceName": "South China Morning Post",
+    "sourceCountry": "China",
+    "sourceCountryCode": "CN",
+    "sourceRegion": "asia",
+    "sourceId": "scmp-asia",
+    "publishedAt": "2026-04-24T09:00:00Z",
+    "mentionedRegions": [
+      "asia"
+    ],
+    "mentionedCountries": [
+      "Japan",
+      "China"
+    ],
+    "imageUrl": "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": "demo-pandemic-asia-3",
+    "originalTitle": "Japan tracks pneumonia-like respiratory illness reports",
+    "sourceName": "The Japan Times",
+    "sourceCountry": "Japan",
+    "sourceCountryCode": "JP",
+    "sourceRegion": "asia",
+    "sourceId": "japantimes-asia",
+    "publishedAt": "2026-04-24T10:00:00Z",
+    "mentionedRegions": [
+      "asia"
+    ],
+    "mentionedCountries": [
+      "Japan",
+      "China"
+    ],
+    "imageUrl": "https://www.japantimes.co.jp/japantimes/uploads/images/2026/06/22/thumbs/400x400/547343.jpg"
+  },
+  {
+    "id": "demo-pandemic-europe-1",
+    "originalTitle": "European health agencies track respiratory outbreak first reported in Asia",
+    "sourceName": "BBC Europe",
+    "sourceCountry": "United Kingdom",
+    "sourceCountryCode": "GB",
+    "sourceRegion": "europe",
+    "sourceId": "bbc-europe",
+    "publishedAt": "2026-04-24T14:00:00Z",
+    "mentionedRegions": [
+      "asia",
+      "europe"
+    ],
+    "mentionedCountries": [
+      "Japan",
+      "China",
+      "United Kingdom",
+      "Germany"
+    ],
+    "imageUrl": "https://m.files.bbci.co.uk/modules/bbc-morph-news-waf-page-meta/5.3.0/bbc_news_logo.png"
+  },
+  {
+    "id": "demo-pandemic-europe-2",
+    "originalTitle": "Germany reviews airport screening after Asia-linked respiratory cases",
+    "sourceName": "Deutsche Welle Europe",
+    "sourceCountry": "Germany",
+    "sourceCountryCode": "DE",
+    "sourceRegion": "europe",
+    "sourceId": "dw-europe",
+    "publishedAt": "2026-04-24T15:00:00Z",
+    "mentionedRegions": [
+      "asia",
+      "europe"
+    ],
+    "mentionedCountries": [
+      "Japan",
+      "China",
+      "Germany"
+    ],
+    "imageUrl": "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": "demo-pandemic-europe-3",
+    "originalTitle": "France monitors respiratory outbreak linked to Asia",
+    "sourceName": "France 24 Europe",
+    "sourceCountry": "France",
+    "sourceCountryCode": "FR",
+    "sourceRegion": "europe",
+    "sourceId": "france24-europe",
+    "publishedAt": "2026-04-24T16:00:00Z",
+    "mentionedRegions": [
+      "asia",
+      "europe"
+    ],
+    "mentionedCountries": [
+      "Japan",
+      "China",
+      "France"
+    ],
+    "imageUrl": "https://s.france24.com/media/display/fc2eb6da-6da1-11f1-959e-005056a97e36/w:1024/p:16x9/capture-11039990956a38324ed5a427-62142941.jpg"
+  },
+  {
+    "id": "demo-pandemic-na-1",
+    "originalTitle": "US officials monitor respiratory virus after reports across Asia and Europe",
+    "sourceName": "CNN",
+    "sourceCountry": "United States",
+    "sourceCountryCode": "US",
+    "sourceRegion": "north-america",
+    "sourceId": "cnn-world",
+    "publishedAt": "2026-04-24T20:00:00Z",
+    "mentionedRegions": [
+      "asia",
+      "europe",
+      "north-america"
+    ],
+    "mentionedCountries": [
+      "Japan",
+      "China",
+      "Germany",
+      "United Kingdom",
+      "United States"
+    ],
+    "imageUrl": "https://cdn.cnn.com/cnnnext/dam/assets/230328155427-01-nyse-0328-super-169.jpg"
+  },
+  {
+    "id": "demo-pandemic-na-2",
+    "originalTitle": "AP tracks respiratory outbreak spreading from Asia to Europe and US",
+    "sourceName": "Associated Press",
+    "sourceCountry": "United States",
+    "sourceCountryCode": "US",
+    "sourceRegion": "north-america",
+    "sourceId": "ap-us",
+    "publishedAt": "2026-04-24T21:00:00Z",
+    "mentionedRegions": [
+      "asia",
+      "europe",
+      "north-america"
+    ],
+    "mentionedCountries": [
+      "Japan",
+      "China",
+      "Germany",
+      "United Kingdom",
+      "United States"
+    ],
+    "imageUrl": "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "id": "demo-pandemic-na-3",
+    "originalTitle": "NPR: North America prepares for respiratory virus monitoring",
+    "sourceName": "NPR",
+    "sourceCountry": "United States",
+    "sourceCountryCode": "US",
+    "sourceRegion": "north-america",
+    "sourceId": "npr-us",
+    "publishedAt": "2026-04-24T22:00:00Z",
+    "mentionedRegions": [
+      "asia",
+      "europe",
+      "north-america"
+    ],
+    "mentionedCountries": [
+      "Japan",
+      "China",
+      "Germany",
+      "United Kingdom",
+      "United States"
+    ],
+    "imageUrl": "https://npr.brightspotcdn.com/dims3/default/strip/false/crop/3383x2255+0+0/resize/3383x2255!/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Fb2%2Fa1%2F35479ba74e7d847f176fd89b3343%2Fap26172507784520.jpg"
+  }
+]

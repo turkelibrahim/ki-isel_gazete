@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ edition_title }}</title>
+  <style>
+    :root {
+      --ink: #161616;
+      --muted: #5f6368;
+      --line: #d7d0c1;
+      --paper: #fffdf7;
+      --paper-soft: #f6f1e7;
+      --accent: #911f27;
+      --badge: #ebe4d5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #ede6d8;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .newspaper-page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto;
+      padding: 32px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.14);
+    }
+
+    .masthead {
+      border-bottom: 4px double var(--ink);
+      padding-bottom: 18px;
+      margin-bottom: 22px;
+      text-align: center;
+    }
+
+    .kicker {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .masthead h1 {
+      margin: 12px 0 6px;
+      font-size: clamp(34px, 6vw, 72px);
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+    }
+
+    .user-line {
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .article-card {
+      border-top: 2px solid var(--ink);
+      padding-top: 12px;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      background: transparent;
+    }
+
+    .featured {
+      grid-column: span 3;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .featured h2 {
+      margin: 0 0 10px;
+      font-size: clamp(32px, 5vw, 58px);
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+    }
+
+    .secondary h3 {
+      margin: 0 0 8px;
+      font-size: 23px;
+      line-height: 1.08;
+    }
+
+    .small-article {
+      border-top: 1px solid var(--line);
+      padding: 10px 0 0;
+    }
+
+    .small-article h4 {
+      margin: 0 0 6px;
+      font-size: 17px;
+      line-height: 1.15;
+    }
+
+    .summary, .content-preview {
+      margin: 0 0 10px;
+      color: #2b2b2b;
+      font-size: 15px;
+    }
+
+    .featured .summary { font-size: 18px; }
+
+    .article-image {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+      object-fit: cover;
+      display: block;
+      background: var(--paper-soft);
+    }
+
+    .placeholder-image {
+      width: 100%;
+      min-height: 220px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(145, 31, 39, 0.08), rgba(0, 0, 0, 0.02)),
+        repeating-linear-gradient(45deg, transparent 0 12px, rgba(0,0,0,.03) 12px 13px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .citation {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dotted var(--line);
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 11.5px;
+      line-height: 1.45;
+    }
+
+    .trust-badge {
+      display: inline-block;
+      padding: 2px 7px;
+      margin-left: 5px;
+      border-radius: 999px;
+      background: var(--badge);
+      color: var(--ink);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .section-title {
+      grid-column: span 3;
+      margin: 18px 0 0;
+      padding: 8px 0;
+      border-top: 3px double var(--ink);
+      border-bottom: 1px solid var(--line);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .events-section {
+      margin-top: 24px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: var(--paper-soft);
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .event-card {
+      border-left: 3px solid var(--accent);
+      padding: 8px 10px;
+      background: rgba(255,255,255,0.55);
+      break-inside: avoid;
+    }
+
+    .event-card h4 { margin: 0 0 4px; font-size: 16px; }
+    .event-card p { margin: 0; color: var(--muted); font-family: Arial, sans-serif; font-size: 12px; }
+
+    .empty-state {
+      padding: 44px 20px;
+      text-align: center;
+      border: 2px dashed var(--line);
+      background: var(--paper-soft);
+      grid-column: span 3;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+    }
+
+    .footer {
+      margin-top: 26px;
+      padding-top: 14px;
+      border-top: 4px double var(--ink);
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 820px) {
+      .newspaper-page { width: calc(100% - 16px); padding: 18px; margin: 8px auto; }
+      .kicker { flex-direction: column; align-items: center; gap: 4px; }
+      .grid, .events-grid { grid-template-columns: 1fr; }
+      .featured, .section-title, .empty-state { grid-column: span 1; }
+      .featured { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      @page { size: A4; margin: 14mm; }
+
+      body {
+        background: #fff;
+        color: #000;
+      }
+
+      .newspaper-page {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        box-shadow: none;
+        background: #fff;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .featured { grid-column: span 3; }
+
+      .small-articles-print-flow {
+        column-count: 3;
+        column-gap: 20px;
+      }
+
+      .article-card,
+      .small-article,
+      .event-card,
+      .events-section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      img { max-width: 100%; height: auto; }
+    }
+  </style>
+</head>
+<body>
+  {% set featured = articles[0] if articles else none %}
+  {% set secondary = articles[1:4] if articles|length > 1 else [] %}
+  {% set small_articles = articles[4:] if articles|length > 4 else [] %}
+
+  <main class="newspaper-page">
+    <header class="masthead">
+      <div class="kicker">
+        <span>{{ edition_date|date_tr }}</span>
+        <span>{{ generated_at|humanize_time }}</span>
+        <span>{{ articles|length }} haber</span>
+      </div>
+      <h1>{{ edition_title }}</h1>
+      <div class="user-line">
+        {% if user.name %}{{ user.name }}{% else %}Kişisel Gazete{% endif %}
+        {% if user.email %} · {{ user.email }}{% endif %}
+      </div>
+    </header>
+
+    <section class="grid" aria-label="Kişisel gazete haberleri">
+      {% if not articles %}
+        <div class="empty-state">
+          <strong>Bugün için gösterilecek haber bulunamadı.</strong><br>
+          Filtreleri genişletmeyi veya kaynakları yeniden çekmeyi deneyin.
+        </div>
+      {% endif %}
+
+      {% if featured %}
+        <article class="article-card featured">
+          <div>
+            <a href="{{ featured.url|safe_url }}"><h2>{{ featured.title|truncate_chars(145) }}</h2></a>
+            {% if featured.summary %}
+              <p class="summary">{{ featured.summary|truncate_chars(320) }}</p>
+            {% elif featured.content %}
+              <p class="summary">{{ featured.content|truncate_chars(320) }}</p>
+            {% endif %}
+            {% set citation = citations.get(featured.article_id) if featured.article_id else featured.citation %}
+            {{ render_citation(featured) }}
+          </div>
+          <div>
+            {% if featured.image_url %}
+              <img class="article-image" src="{{ featured.image_url|safe_url }}" alt="{{ featured.title|truncate_chars(80) }}">
+            {% else %}
+              <div class="placeholder-image">Manşet Görsel Alanı</div>
+            {% endif %}
+          </div>
+        </article>
+      {% endif %}
+
+      {% if secondary %}
+        <div class="section-title">Öne çıkan diğer haberler</div>
+        {% for article in secondary %}
+          <article class="article-card secondary">
+            <a href="{{ article.url|safe_url }}"><h3>{{ article.title|truncate_chars(95) }}</h3></a>
+            {% if article.summary %}
+              <p class="content-preview">{{ article.summary|truncate_chars(180) }}</p>
+            {% elif article.content %}
+              <p class="content-preview">{{ article.content|truncate_chars(180) }}</p>
+            {% endif %}
+            {% set citation = citations.get(article.article_id) if article.article_id else article.citation %}
+            {{ render_citation(article) }}
+          </article>
+        {% endfor %}
+      {% endif %}
+
+      {% if small_articles %}
+        <div class="section-title">Kısa haberler</div>
+      {% endif %}
+    </section>
+
+    {% if small_articles %}
+      <section class="small-articles-print-flow" aria-label="Kısa haberler">
+        {% for article in small_articles %}
+          <article class="small-article">
+            <a href="{{ article.url|safe_url }}"><h4>{{ article.title|truncate_chars(85) }}</h4></a>
+            {% if article.summary %}
+              <p class="content-preview">{{ article.summary|truncate_chars(135) }}</p>
+            {% elif article.content %}
+              <p class="content-preview">{{ article.content|truncate_chars(135) }}</p>
+            {% endif %}
+            {% set citation = citations.get(article.article_id) if article.article_id else article.citation %}
+            {{ render_citation(article) }}
+          </article>
+        {% endfor %}
+      </section>
+    {% endif %}
+
+    <section class="events-section" aria-label="Etkinlikler">
+      <div class="section-title" style="grid-column:auto;margin-top:0;">Etkinlik kutusu</div>
+      {% if events %}
+        <div class="events-grid">
+          {% for event in events %}
+            <article class="event-card">
+              <h4>{{ event.title|default("Etkinlik")|truncate_chars(80) }}</h4>
+              <p>{% if event.date or event.event_date %}{{ (event.date or event.event_date)|date_tr }}{% endif %}{% if event.location %} · {{ event.location }}{% endif %}</p>
+              {% if event.category %}<p><strong>Kategori:</strong> {{ event.category }}</p>{% endif %}
+              {% if event.description %}<p>{{ event.description|truncate_chars(120) }}</p>{% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="content-preview">Bugün için seçilmiş etkinlik bulunmuyor.</p>
+      {% endif %}
+    </section>
+
+    <footer class="footer">
+      Kaynak bilgileri ve güven rozetleri haberlerin altında gösterilir. Bu HTML, PDF dönüştürme modülü için print uyumlu üretilmiştir.
+    </footer>
+  </main>
+</body>
+</html>

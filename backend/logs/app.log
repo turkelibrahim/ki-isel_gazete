@@ -1,0 +1,1 @@
+2026-06-21 18:18:01,968 | INFO | app.core.logging_config | Logging configured with RotatingFileHandler at /mnt/data/work_no_cache/smart-newspaper/backend/logs/app.log

@@ -1,0 +1,60 @@
+{
+  "nextRecordId": 1,
+  "nextBatchId": 1,
+  "admins": [
+    {
+      "id": 1,
+      "username": "reviewer",
+      "email": "reviewer@smartnewspaper.local",
+      "passwordHash": "pbkdf2_sha256$442fb6a58e8e693e1467cfd70dafcc3e$46492dc8977d12630993f4f568a435d4987f50097bd9a6c277c8988ae6bdf2c9",
+      "role": "reviewer",
+      "isActive": true,
+      "totalCorrections": 0,
+      "accuracyRate": 1,
+      "failedLoginAttempts": 0,
+      "lockedUntil": null,
+      "lastLogin": null
+    },
+    {
+      "id": 2,
+      "username": "editor",
+      "email": "editor@smartnewspaper.local",
+      "passwordHash": "pbkdf2_sha256$5a9a49e62d1aae89e0af9e1c64a78353$7a157035eda142f80e17494cd2699efadf0d7c009806cf1ec50e0ff328fd6c60",
+      "role": "editor",
+      "isActive": true,
+      "totalCorrections": 0,
+      "accuracyRate": 1,
+      "failedLoginAttempts": 0,
+      "lockedUntil": null,
+      "lastLogin": null
+    },
+    {
+      "id": 3,
+      "username": "superadmin",
+      "email": "superadmin@smartnewspaper.local",
+      "passwordHash": "pbkdf2_sha256$b059601deec00fc5d2410af68b940797$0161b5566b1a0e0725eb5618d4a22f7663674211615b8203ed916ea9fd81e247",
+      "role": "super_admin",
+      "isActive": true,
+      "totalCorrections": 0,
+      "accuracyRate": 1,
+      "failedLoginAttempts": 0,
+      "lockedUntil": null,
+      "lastLogin": null
+    }
+  ],
+  "sessions": [],
+  "records": [],
+  "feedbackBatches": [],
+  "trainingExamples": [],
+  "retrainingTriggers": [],
+  "adminLog": [],
+  "securityLog": [],
+  "deadLetterQueue": [],
+  "modelState": {
+    "currentVersion": "baseline",
+    "oldVersion": "baseline",
+    "currentAccuracy": 0.86,
+    "oldAccuracy": 0.86,
+    "retrainingRunning": false
+  }
+}
