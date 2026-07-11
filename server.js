@@ -9531,6 +9531,46 @@ async function handleApi(req, res, url) {
     return json(res, 200, { articles });
   }
 
+  const articleSourcesMatch = url.pathname.match(/^\/api\/articles\/([^/]+)\/sources$/);
+  if (req.method === "GET" && articleSourcesMatch) {
+    const articleId = decodeURIComponent(articleSourcesMatch[1]);
+    
+    let article = (_feedCacheStore.articles || []).find((item) => String(item.clusterId) === String(articleId) || String(item.id) === String(articleId));
+    if (!article) {
+       article = (db._articleById && db._articleById.get(String(articleId))) || ARTICLE_CACHE.get(articleId) || findArticleInKnownPools(db, articleId);
+    }
+    if (!article) {
+       article = buildLocalFeedCacheArticles(db).find((item) => String(item.clusterId) === String(articleId) || String(item.id) === String(articleId));
+    }
+
+    if (!article) return json(res, 404, { success: false, error: "Haber bulunamadı." });
+
+    const sources = Array.isArray(article.sources) && article.sources.length > 0 ? article.sources : [
+      {
+        id: article.id || "single-source",
+        source_name: article.sourceName || article.source || "Kaynak belirtilmedi",
+        source_icon: article.sourceLogo || article.sourceIcon || article.icon || "",
+        title: article.title || "Başlık bulunamadı",
+        summary: article.summary || article.description || "",
+        content: article.fullText || article.content || "",
+        url: article.sourceUrl || article.url || article.link || "#",
+        published_at: article.publishedAt || article.date || null,
+        image_url: article.imageUrl || article.image || "/assets/news-placeholder.jpg"
+      }
+    ];
+
+    return json(res, 200, {
+      success: true,
+      cluster_id: article.clusterId || article.id,
+      source_count: sources.length,
+      main_article: {
+        id: article.id,
+        title: article.title,
+        source_name: article.sourceName || article.source || "Kaynak belirtilmedi"
+      },
+      sources: sources
+    });
+  }
 
   const articleClusterDetailMatch = url.pathname.match(/^\/api\/articles\/clusters\/([^/]+)$/);
   if (req.method === "GET" && articleClusterDetailMatch) {

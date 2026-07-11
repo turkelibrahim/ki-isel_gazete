@@ -1070,6 +1070,22 @@
     </section>
   </div>
 
+  <!-- SOURCE COMPARISON MODAL -->
+  <div id="source-comparison-modal" class="source-comparison-modal" role="dialog" aria-modal="true" aria-labelledby="source-comparison-title" hidden>
+    <div class="source-comparison-backdrop" data-source-compare-close></div>
+    <section class="source-comparison-panel" role="document" tabindex="-1">
+      <button type="button" class="source-comparison-close" data-source-compare-close aria-label="Kaynak karşılaştırmayı kapat">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+      <div class="source-comparison-head">
+        <p class="kicker">Haber Karşılaştırma</p>
+        <h3 id="source-comparison-title">Bu haber <span id="source-comparison-count">1</span> farklı kaynakta yayınlandı</h3>
+        <div id="source-comparison-summary" class="source-comparison-summary"></div>
+      </div>
+      <div id="source-comparison-grid" class="source-comparison-grid"></div>
+    </section>
+  </div>
+
   <!-- TOAST NOTIFICATIONS -->
   <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 

@@ -9109,6 +9109,112 @@ function closeInterestInfoModal() {
   }
 }
 
+let sourceComparisonModalEl = document.getElementById("source-comparison-modal");
+let sourceComparisonTitleEl = document.getElementById("source-comparison-title");
+let sourceComparisonCountEl = document.getElementById("source-comparison-count");
+let sourceComparisonSummaryEl = document.getElementById("source-comparison-summary");
+let sourceComparisonGridEl = document.getElementById("source-comparison-grid");
+
+async function openSourceComparison(articleId, clusterId) {
+  if (!sourceComparisonModalEl) {
+    sourceComparisonModalEl = document.getElementById("source-comparison-modal");
+    if (!sourceComparisonModalEl) return;
+    sourceComparisonTitleEl = document.getElementById("source-comparison-title");
+    sourceComparisonCountEl = document.getElementById("source-comparison-count");
+    sourceComparisonSummaryEl = document.getElementById("source-comparison-summary");
+    sourceComparisonGridEl = document.getElementById("source-comparison-grid");
+  }
+
+  let article = state.data?.articles?.find(a => String(a.clusterId || a.id) === String(clusterId || articleId));
+  if (!article && clusterId) article = state.data?.articles?.find(a => String(a.id) === String(clusterId));
+  
+  const localSources = article && Array.isArray(article.sources) ? article.sources : [];
+
+  if (localSources.length > 0) {
+    renderSourceComparisonUI(article, localSources);
+  } else {
+    sourceComparisonGridEl.innerHTML = '<div class="notification-loading">Kaynaklar yükleniyor...</div>';
+    sourceComparisonSummaryEl.innerHTML = '';
+  }
+
+  sourceComparisonModalEl.hidden = false;
+  document.body.classList.add("modal-open");
+
+  try {
+    const fetchId = clusterId || articleId;
+    const response = await api(`/api/articles/${encodeURIComponent(fetchId)}/sources`);
+    if (response && response.success && Array.isArray(response.sources)) {
+      renderSourceComparisonUI(response.main_article || article || { title: "Haber", sourceName: "Kaynak" }, response.sources);
+    } else if (localSources.length === 0) {
+      sourceComparisonGridEl.innerHTML = '<div class="notification-error">Kaynaklar alınamadı.</div>';
+    }
+  } catch (error) {
+    if (localSources.length === 0) {
+      sourceComparisonGridEl.innerHTML = '<div class="notification-error">Kaynaklar alınamadı.</div>';
+    }
+  }
+}
+
+function renderSourceComparisonUI(mainArticle, sources) {
+  if (!sourceComparisonModalEl) return;
+  if (sourceComparisonCountEl) sourceComparisonCountEl.textContent = sources.length;
+  
+  if (sourceComparisonSummaryEl) sourceComparisonSummaryEl.innerHTML = `<strong>${escapeHtml(mainArticle.title || "")}</strong>`;
+  
+  if (sourceComparisonGridEl) sourceComparisonGridEl.innerHTML = sources.map(source => {
+    const name = source.source_name || source.sourceName || source.source || "Kaynak";
+    const icon = source.source_icon || source.sourceIcon || source.icon || "";
+    const title = source.title || mainArticle.title || "Başlıksız";
+    const summary = source.summary || source.description || source.content || source.fullText || "İçerik bulunamadı.";
+    const imageUrl = source.image_url || source.imageUrl || source.image || "";
+    const url = source.url || source.sourceUrl || source.link || "#";
+    const time = source.published_at || source.publishedAt || source.date ? new Date(source.published_at || source.publishedAt || source.date).toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" }) : "";
+    
+    return `
+      <article class="source-comparison-card">
+        <div class="source-comparison-card-top">
+          <div class="source-comparison-card-icon">
+            ${icon ? `<img src="${escapeHtml(icon)}" alt="" onerror="this.outerHTML='<i class=\\'fa-solid fa-newspaper\\'></i>'">` : `<i class="fa-solid fa-newspaper"></i>`}
+          </div>
+          <div>
+            <div class="source-comparison-card-name">${escapeHtml(name)}</div>
+            ${time ? `<div class="source-comparison-card-time">${escapeHtml(time)}</div>` : ""}
+          </div>
+        </div>
+        ${imageUrl ? `<img src="${escapeHtml(imageUrl)}" class="source-comparison-card-img" alt="" onerror="this.hidden=true">` : ""}
+        <h4>${escapeHtml(title)}</h4>
+        <p>${escapeHtml(trimSummary(summary, 200))}</p>
+        <a href="${escapeHtml(url)}" class="source-comparison-card-link" target="_blank" rel="noopener noreferrer">Orijinal Kaynağa Git <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+      </article>
+    `;
+  }).join("");
+}
+
+function closeSourceComparisonModal() {
+  if (sourceComparisonModalEl) {
+    sourceComparisonModalEl.hidden = true;
+    document.body.classList.remove("modal-open");
+  }
+}
+
+document.addEventListener("click", (event) => {
+  const compareBtn = event.target.closest("[data-cluster-source], [data-cluster-more]");
+  if (compareBtn) {
+    event.preventDefault();
+    event.stopPropagation();
+    const clusterId = compareBtn.getAttribute("data-cluster-source") || compareBtn.getAttribute("data-cluster-more");
+    const articleId = compareBtn.getAttribute("data-article-id") || clusterId;
+    openSourceComparison(articleId, clusterId);
+    return;
+  }
+  
+  if (event.target.closest("[data-source-compare-close]")) {
+    event.preventDefault();
+    event.stopPropagation();
+    closeSourceComparisonModal();
+  }
+});
+
 document.addEventListener("click", (event) => {
   const openButton = event.target.closest("[data-interest-info]");
   if (openButton) {
