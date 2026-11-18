@@ -3,7 +3,7 @@
 Rolün: Kıdemli Full-Stack Developer + Sistem Mimarı + Performans Optimizasyon Uzmanı.
 
 Çalışacağın repo:
-https://github.com/ovgubejan/smart-newspaper.git
+https://github.com/turkelibrahim/ki-isel_gazete.git
 
 Bu projede başka bir AI ajanı daha olabilir. İkiniz gerçek yazılım ekibi gibi çalışacaksınız. Birbirinizin yaptığı işleri okuyacak, review edecek, eksikleri düzeltecek ve sistemi geliştireceksiniz.
 

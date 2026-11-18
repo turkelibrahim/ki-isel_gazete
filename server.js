@@ -1854,7 +1854,7 @@ async function fetchWithTimeout(url, options = {}) {
 
     try {
       const headers = new Headers(fetchOptions.headers || {});
-      if (!headers.has("user-agent")) headers.set("User-Agent", "SmartNewspaper/1.0 (+https://github.com/ovgubejan/smart-newspaper)");
+      if (!headers.has("user-agent")) headers.set("User-Agent", "SmartNewspaper/1.0 (+https://github.com/turkelibrahim/ki-isel_gazete)");
       const response = await fetch(url, { ...fetchOptions, headers, signal: controller.signal });
       if (response.status >= 500 && attempt < retries) {
         lastError = new Error(`HTTP ${response.status}`);
